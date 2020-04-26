@@ -16,8 +16,6 @@ func hasError(err error) {
 }
 
 func scanFile(searchStr string, filePath string) {
-	var result []string
-
 	file, err := os.Open(filePath)
 	hasError(err)
 	defer file.Close()
@@ -26,7 +24,6 @@ func scanFile(searchStr string, filePath string) {
 	for s.Scan() {
 		lineStr := s.Text()
 		if strings.Contains(lineStr, searchStr) {
-			result = append(result, lineStr)
 			fmt.Printf("%s:%s\n", filePath, lineStr)
 		}
 	}
